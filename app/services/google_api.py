@@ -58,12 +58,11 @@ async def spreadsheets_update_value(
     for proj in projects:
         new_row = [proj['name'], proj["time_diff"], proj['description']]
         table_values.append(new_row)
-
     update_body = {
         'majorDimension': 'ROWS',
         'values': table_values
     }
-    response = await wrapper_services.as_service_account(
+    await wrapper_services.as_service_account(
         service.spreadsheets.values.update(
             spreadsheetId=spreadsheetid,
             range='A1:E30',

@@ -8,6 +8,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.crud.base import CRUDBase
 from app.models.charity_project import CharityProject
 
+SECONDS_IN_HOUR = 3600
+SECONDS_IN_MINUTE = 60
+
 
 class CRUDCharityProject(CRUDBase):
 
@@ -95,9 +98,9 @@ class CRUDCharityProject(CRUDBase):
             td = timedelta(seconds=project["time_diff"])
             fmt = (
                 f"{td.days}d "
-                f"{td.seconds // 3600}h "
-                f"{(td.seconds % 3600) // 60}m "
-                f"{td.seconds % 60}s"
+                f"{td.seconds // SECONDS_IN_HOUR}h "
+                f"{(td.seconds % SECONDS_IN_HOUR) // SECONDS_IN_MINUTE}m "
+                f"{td.seconds % SECONDS_IN_MINUTE}s"
             )
             project["time_diff"] = fmt
 

@@ -75,22 +75,20 @@ class CRUDBase:
         return db_obj
 
     async def close_object_use_dict_data(
-            self,
-            obj_in,
-            obj_dict: dict[str, Any],
-            session: AsyncSession,
+        self,
+        obj_in,
+        obj_dict: dict[str, Any],
+        session: AsyncSession,
     ):
         # Закрываем объект используя словарь из данных POST-запроса
-        obj_dict["invested_amount"] = (
-            obj_in.full_amount
-        )
+        obj_dict["invested_amount"] = obj_in.full_amount
         obj_dict["fully_invested"] = True
         obj_dict["close_date"] = datetime.utcnow()
 
     async def close_object_use_db_data(
-            self,
-            db_obj,
-            session: AsyncSession,
+        self,
+        db_obj,
+        session: AsyncSession,
     ):
         # Закрываем объект используя объект из базы данных
         db_obj.invested_amount = db_obj.full_amount

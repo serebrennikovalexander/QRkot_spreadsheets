@@ -171,7 +171,7 @@ def needs_more_investment(data: dict) -> bool:
     return data["full_amount"] > data["invested_amount"]
 
 
-def calculate_delta_with_object(object: Donation | CharityProject) -> int:
+def calculate_delta_with_object(object) -> int:
     return object.full_amount - object.invested_amount
 
 
